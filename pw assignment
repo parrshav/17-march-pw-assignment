@@ -1,0 +1,164 @@
+Feature Engineering-1Assignment Questions 
+Assignment 
+Q1: What are missing values in a dataset? Why is it essential to handle missing values? Name some  algorithms that are not affected by missing values. 
+Missing values in a dataset refer to the absence of data for one or more attributes (features) in some instances (rows). These missing values can occur for various reasons, such as data collection errors, sensor malfunctions, or respondents opting not to provide certain information. Missing values are usually represented by placeholders like "NaN" (Not a Number) or "null."
+Importance of Handling Missing Values:
+Handling missing values is essential for several reasons:
+
+Accurate Analysis: Missing values can lead to biased or inaccurate analysis, as they can affect statistical calculations, correlations, and model training.
+
+Reliability: Reliable and complete data is crucial for making informed decisions and drawing accurate conclusions.
+
+Model Performance: Missing values can impact the performance of machine learning models by causing biased training or leading to errors during prediction.
+
+Data Integrity: Properly handling missing values maintains the integrity and quality of the dataset, improving the reliability of any downstream analyses.
+
+Ethical Considerations: Depending on the domain, handling missing values ethically is important to avoid misrepresenting certain groups or making biased conclusions.
+Support Vector Machines (SVM): SVMs can handle datasets with missing values, as they focus on identifying the optimal hyperplane that best separates classes.
+Naive Bayes: Naive Bayes algorithms can handle missing values during the probability calculations.
+
+
+
+Q2: List down techniques used to handle missing data.  Give an example of each with python code.
+Deletion of Missing Data: This involves removing instances with missing values. Be cautious with this method as it can lead to loss of valuable data.
+import pandas as pd
+
+# Create a sample DataFrame with missing values
+data = {'A': [1, 2, None, 4, 5],
+        'B': [None, 2, 3, None, 5]}
+df = pd.DataFrame(data)
+
+# Drop rows with any missing value
+df_cleaned = df.dropna()
+print(df_cleaned)
+Mean/Median/Mode Imputation: Fill missing values with the mean, median, or mode of the respective column.
+import pandas as pd
+
+# Create a sample DataFrame with missing values
+data = {'A': [1, 2, None, 4, 5],
+        'B': [None, 2, 3, None, 5]}
+df = pd.DataFrame(data)
+
+# Impute missing values with mean of each column
+df_imputed = df.fillna(df.mean())
+print(df_imputed)
+Interpolation: Fill missing values using interpolation methods like linear or polynomial interpolation.
+import pandas as pd
+
+# Create a sample DataFrame with missing values
+data = {'A': [1, 2, None, 4, 5],
+        'B': [None, 2, 3, None, 5]}
+df = pd.DataFrame(data)
+
+# Interpolate missing values using linear interpolation
+df_interpolated = df.interpolate(method='linear')
+print(df_interpolated)
+
+
+
+
+
+
+ Q3: Explain the imbalanced data. What will happen if imbalanced data is not handled? 
+Imbalanced Data: Imbalanced data refers to a situation in a dataset where the distribution of classes or categories is significantly skewed, resulting in one class having a much larger number of instances compared to other classes. In other words, there is a substantial imbalance in the frequencies of different classes, making the dataset "imbalanced."
+If imbalanced data is not handled, it can lead to several problems:
+Biased Model Performance: Machine learning algorithms tend to be biased toward the majority class since they are trained to minimize overall error. This results in poor performance on the minority class, which may be of more interest (e.g., identifying rare diseases).
+Low Sensitivity: Models trained on imbalanced data may have low sensitivity (true positive rate) for the minority class, leading to missing important instances. For example, in medical diagnosis, failing to detect a rare disease can have serious consequences.
+
+If imbalanced data is not handled, it can lead to several problems:
+Biased Model Performance: Machine learning algorithms tend to be biased toward the majority class since they are trained to minimize overall error. This results in poor performance on the minority class, which may be of more interest (e.g., identifying rare diseases).
+Low Sensitivity: Models trained on imbalanced data may have low sensitivity (true positive rate) for the minority class, leading to missing important instances. For example, in medical diagnosis, failing to detect a rare disease can have serious consequences.
+Methods to Handle Imbalanced Data:
+Resampling: Oversampling the minority class (creating copies of instances) or undersampling the majority class (removing instances) to balance the class distribution.
+Synthetic Data Generation: Techniques like Synthetic Minority Over-sampling Technique (SMOTE) generate synthetic instances for the minority class to balance the dataset.
+Methods to Handle Imbalanced Data:
+Resampling: Oversampling the minority class (creating copies of instances) or undersampling the majority class (removing instances) to balance the class distribution.
+Synthetic Data Generation: Techniques like Synthetic Minority Over-sampling Technique (SMOTE) generate synthetic instances for the minority class to balance the dataset.
+Collecting More Data: Gathering more data for the minority class to improve its representation.
+Different Algorithms: Choosing algorithms that are naturally less sensitive to imbalanced data, such as decision trees.
+
+
+Q4: What are Up-sampling and Down-sampling? Explain with an example when up-sampling and down sampling are required. 
+Up-Sampling: Up-sampling involves creating copies of instances from the minority class to balance the class distribution. This is done by randomly selecting instances from the minority class and duplicating them until the class distribution is more balanced.
+Down-Sampling: Down-sampling involves reducing the number of instances in the majority class to balance the class distribution. This is done by randomly removing instances from the majority class until the class distribution is more balanced.
+Up-Sampling: Let's consider a credit card fraud detection scenario. Suppose you have a dataset of credit card transactions where only 2% of transactions are fraudulent (minority class) and 98% are non-fraudulent (majority class). Since detecting fraudulent transactions is critical, you might up-sample the minority class to ensure the model learns to identify fraud effectively. You would randomly duplicate instances of fraudulent transactions until the class distribution becomes more balanced.
+Down-Sampling: Consider a medical diagnosis problem where you have a dataset of patients with a rare disease (minority class) and patients without the disease (majority class). Since the disease is rare, you might have a highly imbalanced dataset. To ensure that the model doesn't focus only on the majority class, you might down-sample the majority class.
+Q5: What is data Augmentation? Explain SMOTE. 
+Data augmentation is a technique used in machine learning and deep learning to artificially increase the size of a dataset by applying various transformations to the existing data. The goal of data augmentation is to improve the model's ability to generalize by exposing it to a wider range of variations and conditions. It is commonly used in scenarios where the available dataset is limited or imbalanced
+
+Q6: What are outliers in a dataset? Why is it essential to handle outliers? 
+Outliers are data points that significantly deviate from the rest of the data in a dataset. These are observations that lie far away from the majority of other data points and may represent anomalies, errors, or rare events. Outliers can distort statistical analyses, machine learning models, and data visualizations, potentially leading to inaccurate conclusions and predictions.
+Impact on Descriptive Statistics: Outliers can substantially affect summary statistics such as mean and standard deviation, leading to misrepresentations of the central tendency and variability of the data.
+Inaccurate Models: Outliers can disproportionately influence the parameters of statistical and machine learning models. Models may become skewed or biased if outliers are not treated properly.
+Loss of Predictive Power: In machine learning, models that are sensitive to outliers might be overly influenced by them, leading to reduced predictive power and generalization performance on new data.
+Distorted Relationships: Outliers can distort relationships and correlations between variables, leading to incorrect insights and conclusions.
+Visualization: Outliers can obscure patterns and trends in data visualizations, making it challenging to identify meaningful information.
+
+Q7: You are working on a project that requires analyzing customer data. However, you notice that some of  the data is missing. What are some techniques you can use to handle the missing data in your analysis? 
+Deletion of Missing Data: This involves removing instances with missing values. Be cautious with this method as it can lead to loss of valuable data.
+import pandas as pd
+
+# Create a sample DataFrame with missing values
+data = {'A': [1, 2, None, 4, 5],
+        'B': [None, 2, 3, None, 5]}
+df = pd.DataFrame(data)
+
+# Drop rows with any missing value
+df_cleaned = df.dropna()
+print(df_cleaned)
+Mean/Median/Mode Imputation: Fill missing values with the mean, median, or mode of the respective column.
+import pandas as pd
+
+# Create a sample DataFrame with missing values
+data = {'A': [1, 2, None, 4, 5],
+        'B': [None, 2, 3, None, 5]}
+df = pd.DataFrame(data)
+
+# Impute missing values with mean of each column
+df_imputed = df.fillna(df.mean())
+print(df_imputed)
+Interpolation: Fill missing values using interpolation methods like linear or polynomial interpolation.
+import pandas as pd
+
+# Create a sample DataFrame with missing values
+data = {'A': [1, 2, None, 4, 5],
+        'B': [None, 2, 3, None, 5]}
+df = pd.DataFrame(data)
+
+# Interpolate missing values using linear interpolation
+df_interpolated = df.interpolate(method='linear')
+print(df_interpolated)
+
+
+
+
+
+
+
+
+Q8: You are working with a large dataset and find that a small percentage of the data is missing. What are  some strategies you can use to determine if the missing data is missing at random or if there is a pattern  to the missing data? 
+When dealing with missing data, it's important to understand whether the missingness is random or if there is a pattern to it. Determining the nature of missing data can help you make informed decisions about how to handle it. Here are some strategies you can use to assess whether the missing data is missing at random or if there's a pattern:
+Exploratory Data Analysis (EDA):
+Visualize the missing data: Create graphical representations, such as heatmaps or bar plots, to visualize the distribution of missing values across variables. This can help you identify patterns.
+Calculate missingness percentages: Calculate the percentage of missing values for each variable. If certain variables consistently have high missingness, it might indicate a pattern.
+When dealing with missing data, it's important to understand whether the missingness is random or if there is a pattern to it. Determining the nature of missing data can help you make informed decisions about how to handle it. Here are some strategies you can use to assess whether the missing data is missing at random or if there's a pattern:
+Exploratory Data Analysis (EDA):
+Visualize the missing data: Create graphical representations, such as heatmaps or bar plots, to visualize the distribution of missing values across variables. This can help you identify patterns.
+Calculate missingness percentages: Calculate the percentage of missing values for each variable. If certain variables consistently have high missingness, it might indicate a pattern.
+Correlation Analysis:
+Analyze the correlation between variables with missing data and other variables. If there's a high correlation with certain variables, it might indicate a pattern.
+Time Series Analysis:
+If your data has a time component, analyze whether the missingness follows a temporal pattern. Missing values occurring at specific time points might reveal insights.
+Machine Learning Models:
+Train a model to predict missingness based on other variables. If the model performs well, it might suggest that there's a pattern to the missing data.
+Pattern Visualization and Analysis:
+Create visualization tools to explore patterns in missing data, such as hierarchical clustering of variables based on missingness or scatter plots of missingness proportions.
+
+
+
+Q9: Suppose you are working on a medical diagnosis project and find that the majority of patients in the  dataset do not have the condition of interest, while a small percentage do. What are some strategies you  can use to evaluate the performance of your machine learning model on this imbalanced dataset? 
+
+Q10: When attempting to estimate customer satisfaction for a project, you discover that the dataset is  unbalanced, with the bulk of customers reporting being satisfied. What methods can you employ to  balance the dataset and down-sample the majority class? 
+Q11: You discover that the dataset is unbalanced with a low percentage of occurrences while working on a  project that requires you to estimate the occurrence of a rare event. What methods can you employ to  balance the dataset and up-sample the minority class? 
+Note:  Create your assignment in Jupyter notebook and upload it in GitHub & share that github   repository link through your dashboard. Make sure the repository is public.
+Data Science Masters 
